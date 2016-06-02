@@ -930,3 +930,5 @@ db.pm
 *.slk
 *.mdb
 *.dat
+
+.vagrant/
