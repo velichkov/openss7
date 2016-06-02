@@ -12,7 +12,7 @@ Vagrant.configure(2) do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
-  config.vm.box = "ubuntu/trusty64"
+  #config.vm.box = "ubuntu/trusty64"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -64,9 +64,24 @@ Vagrant.configure(2) do |config|
   # Enable provisioning with a shell script. Additional provisioners such as
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
   # documentation for more information about their specific syntax and use.
-  config.vm.provision "shell", inline: <<-SHELL
+  #config.vm.provision "shell", inline: <<-SHELL
+  #  sudo apt-get update
+  #  sudo apt-get install -y linux-headers-$(uname -r) build-essential git vim
+  #  sudo apt-get install -y apt-utils bzip2 coreutils createrepo doxygen \
+  #           dpkg dpkg-dev fastjar gcj-jdk gcj-jre-headless ghostscript \
+  #           gnupg gnuplot-nox groff groff-base gzip \
+  #           imagemagick insserv latex2html libc-bin lsof lzma \
+  #           module-init-tools rpm texlive-binaries texlive-font-utils \
+  #           texlive-latex-base transfig xz-utils zip \
+  #           libsnmp-dev libsnmp-perl snmp snmpd \
+  #           lm-sensors libsnmp-dev libsnmp9-dev libsensors4-dev
+  #SHELL
+
+  config.vm.define "trusty64", autostart: false do |trusty64|
+    trusty64.vm.box = "ubuntu/trusty64"
+    trusty64.vm.provision "shell", inline: <<-SHELL
     sudo apt-get update
-    sudo apt-get install -y linux-headers-$(uname -r) build-essential
+    sudo apt-get install -y linux-headers-$(uname -r) build-essential git vim
     sudo apt-get install -y apt-utils bzip2 coreutils createrepo doxygen \
              dpkg dpkg-dev fastjar gcj-jdk gcj-jre-headless ghostscript \
              gnupg gnuplot-nox groff groff-base gzip \
@@ -75,5 +90,54 @@ Vagrant.configure(2) do |config|
              texlive-latex-base transfig xz-utils zip \
              libsnmp-dev libsnmp-perl snmp snmpd \
              lm-sensors libsnmp-dev libsnmp9-dev libsensors4-dev
-  SHELL
+    SHELL
+  end
+
+  config.vm.define "precise64", autostart: false do |precise64|
+    precise64.vm.box = "ubuntu/precise64"
+    precise64.vm.provision "shell", inline: <<-SHELL
+    sudo apt-get update
+    sudo apt-get install -y linux-headers-$(uname -r) build-essential git vim
+    sudo apt-get install -y apt-utils bzip2 coreutils createrepo doxygen \
+             dpkg dpkg-dev fastjar gcj-jdk gcj-jre-headless ghostscript \
+             gnupg gnuplot-nox groff groff-base gzip \
+             imagemagick insserv latex2html libc-bin lsof lzma \
+             module-init-tools rpm texlive-binaries texlive-font-utils \
+             texlive-latex-base transfig xz-utils zip \
+             libsnmp-dev libsnmp-perl snmp snmpd \
+             lm-sensors libsnmp-dev libsnmp9-dev libsensors4-dev
+    SHELL
+  end
+
+  config.vm.define "jessie64", autostart: false do |jessie64|
+    jessie64.vm.box = "debian/jessie64"
+    jessie64.vm.provision "shell", inline: <<-SHELL
+    sudo apt-get update
+    sudo apt-get install -y linux-headers-$(uname -r) build-essential git vim
+    sudo apt-get install -y apt-utils bzip2 coreutils createrepo doxygen \
+             dpkg dpkg-dev fastjar gcj-jdk gcj-jre-headless ghostscript \
+             gnupg gnuplot-nox groff groff-base gzip \
+             imagemagick insserv latex2html libc-bin lsof lzma \
+             module-init-tools rpm texlive-binaries texlive-font-utils \
+             texlive-latex-base transfig xz-utils zip \
+             libsnmp-dev libsnmp-perl snmp snmpd \
+             lm-sensors libsnmp-dev libsnmp9-dev libsensors4-dev
+    SHELL
+  end
+
+  config.vm.define "wheezy64", autostart: false do |wheezy64|
+    wheezy64.vm.box = "debian/wheezy64"
+    wheezy64.vm.provision "shell", inline: <<-SHELL
+    sudo apt-get update
+    sudo apt-get install -y linux-headers-$(uname -r) build-essential git vim
+    sudo apt-get install -y apt-utils bzip2 coreutils createrepo doxygen \
+             dpkg dpkg-dev fastjar gcj-jdk gcj-jre-headless ghostscript \
+             gnupg gnuplot-nox groff groff-base gzip \
+             imagemagick insserv latex2html libc-bin lsof lzma \
+             module-init-tools rpm texlive-binaries texlive-font-utils \
+             texlive-latex-base transfig xz-utils zip \
+             libsnmp-dev libsnmp-perl snmp snmpd \
+             lm-sensors libsnmp-dev libsnmp9-dev libsensors4-dev
+    SHELL
+  end
 end
